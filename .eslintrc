@@ -1,9 +1,15 @@
-{
+{   
+    "parserOptions": {
+        "ecmaVersion": 7
+    },
     "env": {
         "browser": true
     },
     "extends": ["eslint-config-airbnb"],
     "rules": {
-        "react/jsx-filename-extension": 0
+        "react/jsx-filename-extension": 0,
+        "import/no-extraneous-dependencies": 0,
+        "react/require-default-props": 0,
+        "react/forbid-prop-types": 0
     }
 }
