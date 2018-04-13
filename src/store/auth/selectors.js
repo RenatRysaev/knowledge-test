@@ -1,0 +1,1 @@
+export const isAuthSelector = state => state.authReducer.isAuth;
