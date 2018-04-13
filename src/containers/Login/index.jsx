@@ -1,5 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import connect from 'react-redux/es/connect/connect';
+import withRouter from 'react-router-dom/es/withRouter';
 import PropTypes from 'prop-types';
 
 import { auth } from '../../store/auth/actions';
@@ -25,11 +26,25 @@ class Login extends PureComponent {
     isSubmitForm: false, 
   }
 
+  componentDidMount() {
+    this.redirectToProfile(this.props.isAuth);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.redirectToProfile(nextProps.isAuth);
+  }
+
   handleSubmit = ({ login, password }) => {
     const { auth } = this.props;
     auth({ login, password });
 
     this.setState({ isSubmitForm: true });
+  }
+
+  redirectToProfile = (isAuth) => {
+    if (isAuth) {
+      this.props.history.push('/profile');
+    }
   }
 
   render() {
@@ -47,4 +62,6 @@ class Login extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Login),
+);
