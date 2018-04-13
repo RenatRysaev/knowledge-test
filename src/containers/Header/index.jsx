@@ -7,21 +7,27 @@ import Menu from '../../components/Menu';
 
 import menuList from './menuList';
 
-const Header1 = () => (
-  <Fragment>
-    <AppBar iconElementRight={<IconButton><MenuIcon /></IconButton>} />
-    <Menu menuList={menuList} />
-  </Fragment>
-);
-
-// export default Header;
 
 export default class Header extends Component {
+  state = {
+    isOpenMenu: false,
+  }
 
-
-  handleClick = () => console.log('test');
+  toggleMenu = () => {
+    this.setState(({ isOpenMenu }) => ({ isOpenMenu: !isOpenMenu }));
+  }
 
   render() {
-
+    const { isOpenMenu } = this.state;
+    return (
+      <Fragment>
+        <AppBar
+          iconElementRight={<IconButton><MenuIcon /></IconButton>}
+          iconElementLeft={<div />}
+          onRightIconButtonClick={this.toggleMenu}
+        />
+        <Menu menuList={menuList} isOpen={isOpenMenu} />
+      </Fragment>
+    );
   }
 }
