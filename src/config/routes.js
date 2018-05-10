@@ -1,39 +1,32 @@
-import Header from 'containers/Header';
-import Home from 'containers/Home';
-import Login from 'containers/Login';
-import News from 'containers/News';
-import Profile from 'containers/Profile';
+import HomePage from 'containers/HomePage';
+import LoginPage from 'containers/LoginPage';
+import NewsPage from 'containers/NewsPage';
+import ProfilePage from 'containers/ProfilePage';
 
 
 const routes = [
   {
-    path: null,
-    component: Header,
-    isPrivate: false,
-    isExact: true,
-  },
-  {
     path: '/',
-    component: Home,
+    component: HomePage,
     isPrivate: false,
     isExact: true,
   },
   {
     path: '/login',
-    component: Login,
+    component: LoginPage,
     isPrivate: false,
     isExact: true,
   },
   {
     path: '/news',
-    component: News,
+    component: NewsPage,
     isPrivate: false,
     isExact: true,
   },
   {
     path: '/profile',
-    component: Profile,
-    isPrivate: false,
+    component: ProfilePage,
+    isPrivate: true,
     isExact: true,
   },
 ];
