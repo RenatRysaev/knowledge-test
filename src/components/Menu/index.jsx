@@ -2,7 +2,7 @@ import React from 'react';
 import NavLink from 'react-router-dom/es/NavLink';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import PropTypes from 'react-proptypes';
+import PropTypes from 'prop-types';
 
 const Menu = ({ menuList = [], isOpen = true }) => (
   <Drawer open={isOpen}>
@@ -19,7 +19,7 @@ const Menu = ({ menuList = [], isOpen = true }) => (
 );
 
 Menu.propTypes = {
-  menuList: PropTypes.array,
+  menuList: PropTypes.arrayOf(PropTypes.object),
   isOpen: PropTypes.bool,
 };
 

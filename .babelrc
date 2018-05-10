@@ -1,0 +1,9 @@
+{
+	"presets": ["es2017", "react"],
+	"plugins": [
+		"transform-object-rest-spread",
+		"transform-class-properties",
+		"transform-decorators-legacy",
+		"react-hot-loader/babel"
+	]
+}

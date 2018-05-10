@@ -1,0 +1,26 @@
+{
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true
+	},
+	"extends": ["eslint-config-airbnb"],
+	"settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "src"
+        ]
+      }
+    }
+  },
+	"rules": {
+		"import/prefer-default-export": 0,
+		"no-shadow": 0,
+		"object-curly-newline": 0,
+		"linebreak-style": 0,
+		"react/require-default-props": 0,
+		"react/jsx-boolean-value": 0,
+		"import/first": 0
+	}
+}

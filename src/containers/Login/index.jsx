@@ -1,12 +1,12 @@
 import React, { Fragment, PureComponent } from 'react';
 import connect from 'react-redux/es/connect/connect';
-import withRouter from 'react-router-dom/es/withRouter';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { auth } from '../../store/auth/actions';
-import { authSelector } from '../../store/auth/selectors';
+import { auth } from 'store/auth/actions';
+import { authSelector } from 'store/auth/selectors';
 
-import Form from '../../components/Form';
+import Form from 'components/Form';
 
 const mapStateToProps = state => ({
   isAuth: authSelector(state),
@@ -23,7 +23,7 @@ class Login extends PureComponent {
   }
 
   state = {
-    isSubmitForm: false, 
+    isSubmitForm: false,
   }
 
   componentDidMount() {
@@ -53,7 +53,7 @@ class Login extends PureComponent {
     return (
       <Fragment>
         <Form onSubmitForm={this.handleSubmit} />
-        
+
         {!isAuth && isSubmitForm &&
           <p>Имя пользователя или пароль введены не верно</p>
         }

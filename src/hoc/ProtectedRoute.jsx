@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withRouter from 'react-router-dom/es/withRouter';
+import { withRouter } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import { authSelector } from '../store/auth/selectors';
 
