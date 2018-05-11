@@ -7,15 +7,17 @@ import rootReducer from './rootReducer';
 
 export const history = createHistory();
 
-const routMiddleware = routerMiddleware(history);
+
+const middleware = [
+  thunkMiddleware,
+  routerMiddleware(history),
+];
+
 
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line
-  applyMiddleware(
-    routMiddleware,
-    thunkMiddleware,
-  ),
+  applyMiddleware(...middleware),
 );
 
 export default store;

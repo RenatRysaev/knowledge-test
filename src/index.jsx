@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { ConnectedRouter } from 'react-router-redux';
-import { Provider } from 'react-redux';
+import Provider from 'react-redux/lib/components/Provider';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store, { history } from './config/store';
 

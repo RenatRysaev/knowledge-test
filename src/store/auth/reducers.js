@@ -1,27 +1,33 @@
-import { AUTH } from './constants';
-import db from './db';
+import createReducer from 'redux-act/lib/createReducer';
+import {
+  login,
+  loginSuccess,
+  loginFailure,
+  logoutSuccess,
+} from './actions';
 
-import { isThereUser } from './helpers';
 
 const initialState = {
   isAuth: false,
+  isfetch: false,
+  errors: [],
 };
 
-const authReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case AUTH: {
-      const isAuth = isThereUser({
-        db,
-        login: payload.login,
-        password: payload.password,
-      });
+const authReducer = createReducer({
+  [login]: state => ({ ...state, isfetch: true }),
 
-      return { isAuth };
-    }
+  [loginSuccess]: state => ({ ...state, isfetch: false, isAuth: true }),
 
-    default:
-      return state;
-  }
-};
+  [loginFailure]: (state, err) => ({
+    ...state,
+    isAuth: false,
+    isfetch: false,
+    errors: [...state.errors, err],
+  }),
+
+  [logoutSuccess]: state => ({ ...state, isAuth: false }),
+
+}, initialState);
+
 
 export default authReducer;

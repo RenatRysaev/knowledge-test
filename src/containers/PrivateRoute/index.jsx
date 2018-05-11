@@ -1,11 +1,18 @@
 import React from 'react';
-// import connect from 'react-redux/es/connect/connect';
+import connect from 'react-redux/es/connect/connect';
 import Route from 'react-router-dom/es/Route';
 import Redirect from 'react-router-dom/es/Redirect';
 import PropTypes from 'prop-types';
 
+import { authSelector } from 'store/auth/selectors';
 
-const PrivateRoute = ({ component: Component, isAuth = true, ...rest }) => (
+
+const mapStateToProps = state => ({
+  isAuth: authSelector(state),
+});
+
+
+const PrivateRoute = ({ component: Component, isAuth, ...rest }) => (
   <Route
     {...rest}
     render={props => (
@@ -19,4 +26,4 @@ PrivateRoute.propTypes = {
   isAuth: PropTypes.bool,
 };
 
-export default PrivateRoute;
+export default connect(mapStateToProps, null)(PrivateRoute);

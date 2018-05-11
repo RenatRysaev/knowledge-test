@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class Form extends Component {
-  static propTypes = {
-    onSubmitForm: PropTypes.func,
-  }
 
+class Form extends Component {
   state = {
-    login: '',
+    email: '',
     password: '',
   }
 
@@ -20,19 +17,25 @@ export default class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { login, password } = this.state;
+    const { email, password } = this.state;
     const { onSubmitForm } = this.props;
 
-    onSubmitForm({ login, password });
+    onSubmitForm(email, password);
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <TextField onChange={this.handleChange} hintText="login" name="login" />
+        <TextField onChange={this.handleChange} hintText="login" name="email" />
         <TextField onChange={this.handleChange} hintText="password" name="password" type="password" />
         <RaisedButton type="submit" label="auth" primary={true} />
       </form>
     );
   }
 }
+
+Form.propTypes = {
+  onSubmitForm: PropTypes.func,
+};
+
+export default Form;
