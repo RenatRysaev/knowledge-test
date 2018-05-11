@@ -17,7 +17,7 @@ export const requestLogin = (email, password) => async (dispatch) => {
 
     const { data } = await api.login(email, password);
 
-    dispatch(loginSuccess(data.id));
+    dispatch(loginSuccess(data.data.id));
     dispatch(replace('/profile'));
   } catch (err) {
     dispatch(loginFailure(err.message));

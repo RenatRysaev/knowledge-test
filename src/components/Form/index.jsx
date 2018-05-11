@@ -26,9 +26,9 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <TextField onChange={this.handleChange} hintText="login" name="email" />
-        <TextField onChange={this.handleChange} hintText="password" name="password" type="password" />
-        <RaisedButton type="submit" label="auth" primary={true} />
+        <TextField onChange={this.handleChange} hintText="Email" name="email" />
+        <TextField onChange={this.handleChange} hintText="Password" name="password" type="password" />
+        <RaisedButton type="submit" label="Login" primary={true} />
       </form>
     );
   }

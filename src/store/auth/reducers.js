@@ -11,12 +11,18 @@ const initialState = {
   isAuth: false,
   isfetch: false,
   errors: [],
+  userId: null,
 };
 
 const authReducer = createReducer({
   [login]: state => ({ ...state, isfetch: true }),
 
-  [loginSuccess]: state => ({ ...state, isfetch: false, isAuth: true }),
+  [loginSuccess]: (state, payload) => ({
+    ...state,
+    isfetch: false,
+    isAuth: true,
+    userId: payload,
+  }),
 
   [loginFailure]: (state, err) => ({
     ...state,
