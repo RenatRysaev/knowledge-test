@@ -1,27 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { List, ListItem } from 'material-ui/List';
 
-// import styles from './styles.css';
+import styles from './styles.css';
 
 const UserInfo = ({
   city,
   languages = [],
   social = [],
 }) => (
-  <div>
+  <div className={styles.layer}>
     <h3>Город: {city}</h3>
 
     <h3>Знание языков:</h3>
-    <ul>
+    <List>
       {languages.map(lang => <li key={lang}>{lang}</li>)}
-    </ul>
+    </List>
 
     <h3>Социальные сети:</h3>
-    <ul>
+    <List>
       {social.map(({ label, link }) => (
-        <li key={link}><a href={link}>{label}</a></li>
+        <a target="_blank" href={link}>
+          <ListItem key={link}>
+            {label}
+          </ListItem>
+        </a>
       ))}
-    </ul>
+    </List>
 
   </div>
 );

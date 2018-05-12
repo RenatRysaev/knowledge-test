@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import CircularProgress from 'material-ui/CircularProgress';
 import styles from './styles.css';
 
 
@@ -26,6 +27,7 @@ class Form extends Component {
   }
 
   render() {
+    const { isFetchAuth } = this.props;
     return (
       <Paper className={styles.wrapper}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
@@ -43,7 +45,15 @@ class Form extends Component {
             name="password"
             type="password"
           />
-          <RaisedButton className={styles.submitBtn} type="submit" label="Login" primary={true} />
+          <RaisedButton
+            className={styles.submitBtn}
+            type="submit"
+            label={!isFetchAuth && 'Login'}
+            primary={true}
+            disabled={isFetchAuth}
+          >
+            {isFetchAuth ? <CircularProgress /> : null}
+          </RaisedButton>
         </form>
       </Paper>
     );
@@ -51,6 +61,7 @@ class Form extends Component {
 }
 
 Form.propTypes = {
+  isFetchAuth: PropTypes.bool,
   onSubmitForm: PropTypes.func,
 };
 

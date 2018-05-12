@@ -4,6 +4,7 @@ import NavMenu from 'components/NavMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import styles from './style.css';
 
+
 const Header = ({ menuList, isAuth }) => (
   <header className={styles.header}>
     <NavMenu menuList={menuList} />
