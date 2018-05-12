@@ -1,0 +1,20 @@
+.wrapper {
+  max-width: 420px;
+  margin-left: 25px;
+  margin-top: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px;
+}
+
+.field {
+  width: 100% !important;
+}
+
+.submitBtn {
+  margin-top: 30px;
+}
