@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from 'react';
 import connect from 'react-redux/es/connect/connect';
-// import withRouter from 'react-router-dom/es/withRouter';
 import PropTypes from 'prop-types';
 
 import { requestLogin } from 'store/auth/actions';
