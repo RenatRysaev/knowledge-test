@@ -2,16 +2,22 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 
-import { userInfoFetchSelector, userInfoSelector } from 'store/userInfo/selectors';
+import {
+  userInfoFetchSelector,
+  userInfoSelector,
+  userInfoErrorSelector,
+} from 'store/userInfo/selectors';
 import { getUserInfo } from 'store/userInfo/actions';
 
 import UserInfo from 'components/UserInfo';
 import Loader from 'components/Loader';
+import ShowError from 'components/ShowError';
 
 
 const mapStateToProps = state => ({
   isFetchUserInfo: userInfoFetchSelector(state),
   userInfo: userInfoSelector(state),
+  userInfoError: userInfoErrorSelector(state),
 });
 
 @connect(mapStateToProps, { getUserInfo })
@@ -23,7 +29,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { userInfo = {}, isFetchUserInfo } = this.props;
+    const { userInfo = {}, isFetchUserInfo, userInfoError } = this.props;
     return (
       <Fragment>
         <Loader isFetching={isFetchUserInfo}>
@@ -33,6 +39,8 @@ class ProfilePage extends Component {
             social={userInfo.social}
           />
         </Loader>
+
+        <ShowError error={userInfoError} />
       </Fragment>
     );
   }
@@ -49,6 +57,7 @@ ProfilePage.propTypes = {
     })),
   }),
   isFetchUserInfo: PropTypes.bool,
+  userInfoError: PropTypes.string,
   getUserInfo: PropTypes.func,
 };
 

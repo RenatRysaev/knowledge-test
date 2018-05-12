@@ -17,9 +17,13 @@ export const requestLogin = (email, password) => async (dispatch) => {
 
     const { data } = await api.login(email, password);
 
-    dispatch(loginSuccess(data.data.id));
-    dispatch(replace('/profile'));
+    if (data.status === 'ok') {
+      dispatch(loginSuccess(data.data.id));
+      dispatch(replace('/profile'));
+    } else {
+      dispatch(loginFailure(data.message));
+    }
   } catch (err) {
-    dispatch(loginFailure(err.message));
+    dispatch(loginFailure('500 internal server error'));
   }
 };

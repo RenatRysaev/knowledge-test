@@ -13,8 +13,12 @@ export const getNews = () => async (dispatch) => {
 
     const news = await api.getNews();
 
-    dispatch(successNews(news.data.data));
+    if (news.data.status === 'ok') {
+      dispatch(successNews(news.data.data));
+    } else {
+      dispatch(failureNews(news.data.message));
+    }
   } catch (err) {
-    dispatch(failureNews(err.message));
+    dispatch(failureNews('500 internal server error'));
   }
 };

@@ -9,7 +9,7 @@ import {
 const initialState = {
   isFetch: false,
   userInfo: {},
-  error: [],
+  error: '',
 };
 
 const userInfoReducer = createReducer({
@@ -17,7 +17,7 @@ const userInfoReducer = createReducer({
 
   [succesUserInfo]: (state, payload) => ({ ...state, userInfo: payload, isFetch: false }),
 
-  [failureUserInfo]: (state, payload) => ({ ...state, error: [...state.error, payload] }),
+  [failureUserInfo]: (state, payload) => ({ ...state, error: payload }),
 }, initialState);
 
 export default userInfoReducer;

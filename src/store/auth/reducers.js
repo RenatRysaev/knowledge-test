@@ -10,7 +10,7 @@ import {
 const initialState = {
   isAuth: false,
   isfetch: false,
-  errors: [],
+  error: '',
   userId: null,
 };
 
@@ -24,11 +24,11 @@ const authReducer = createReducer({
     userId: payload,
   }),
 
-  [loginFailure]: (state, err) => ({
+  [loginFailure]: (state, payload) => ({
     ...state,
     isAuth: false,
     isfetch: false,
-    errors: [...state.errors, err],
+    error: payload,
   }),
 
   [logoutSuccess]: state => ({ ...state, isAuth: false }),

@@ -3,13 +3,15 @@ import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
 
 import { requestLogin } from 'store/auth/actions';
-import { authFetchingSelector } from 'store/auth/selectors';
+import { authFetchingSelector, authErrorSelector } from 'store/auth/selectors';
 
 import Form from 'components/Form';
+import ShowError from 'components/ShowError';
 
 
 const mapStateToProps = state => ({
   isFetchAuth: authFetchingSelector(state),
+  authError: authErrorSelector(state),
 });
 
 @connect(mapStateToProps, { requestLogin })
@@ -21,10 +23,11 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { isFetchAuth } = this.props;
+    const { isFetchAuth, authError } = this.props;
     return (
       <Fragment>
         <Form isFetchAuth={isFetchAuth} onSubmitForm={this.handleSubmit} />
+        <ShowError error={authError} />
       </Fragment>
     );
   }
@@ -32,6 +35,7 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   isFetchAuth: PropTypes.bool,
+  authError: PropTypes.string,
   requestLogin: PropTypes.func,
 };
 

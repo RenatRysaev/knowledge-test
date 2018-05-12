@@ -9,7 +9,7 @@ import {
 const initialState = {
   isFetch: false,
   news: [],
-  error: [],
+  error: '',
 };
 
 const newsReducer = createReducer({
@@ -24,7 +24,7 @@ const newsReducer = createReducer({
   [failureNews]: (state, payload) => ({
     ...state,
     isFetch: false,
-    error: [...state.error, payload],
+    error: payload,
   }),
 }, initialState);
 

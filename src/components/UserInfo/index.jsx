@@ -20,8 +20,8 @@ const UserInfo = ({
     <h3>Социальные сети:</h3>
     <List>
       {social.map(({ label, link }) => (
-        <a target="_blank" href={link}>
-          <ListItem key={link}>
+        <a key={link} target="_blank" href={link}>
+          <ListItem>
             {label}
           </ListItem>
         </a>

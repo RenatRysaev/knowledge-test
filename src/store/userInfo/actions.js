@@ -16,8 +16,12 @@ export const getUserInfo = () => async (dispatch, getState) => {
 
     const userInfo = await api.getUserInfo(userId);
 
-    dispatch(succesUserInfo(userInfo.data.data));
+    if (userInfo.data.status === 'ok') {
+      dispatch(succesUserInfo(userInfo.data.data));
+    } else {
+      failureUserInfo(userInfo.data.message);
+    }
   } catch (err) {
-    failureUserInfo(err.message);
+    failureUserInfo('500 internal server error');
   }
 };
